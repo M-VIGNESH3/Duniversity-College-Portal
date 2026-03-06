@@ -14,8 +14,9 @@ services:
   data-base:
     image: mariadb:11.4
     container_name: data
-    env_file:
-      - ./.env
+    environment:
+      MARIADB_ROOT_PASSWORD: root123
+      MARIADB_DATABASE: college_db
     ports:
       - "3306:3306"
 
@@ -24,6 +25,7 @@ services:
 
 volumes:
   data1: {}
+
 
 
 

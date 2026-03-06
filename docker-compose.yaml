@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   collage-portal:
-    build: public/college-portal/Dockerfile
+    build: /home/ubuntu/Duniversity-College-Portal/public/college-portal
     container_name: c-p
     ports:
       - "81:3000"
@@ -24,6 +24,7 @@ services:
 
 volumes:
   data1: {}
+
 
 
 

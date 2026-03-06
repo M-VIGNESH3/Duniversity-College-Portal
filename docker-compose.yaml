@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  collage-portal:
+    build: public/college-portal/Dockerfile
+    container_name: c
+    ports:
+      - "81:3000"
+    environment:
+      - .env 
+    depends_on:
+      - data-base
+    
+  data-base:
+    image: mysql:8.0
+    container_name: data
+    environment:
+      - .env
+
+    volumes:
+      - data1:/var/lib/data1
+
+volumes:
+  data1: {}
+
+

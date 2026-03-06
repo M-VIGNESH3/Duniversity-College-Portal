@@ -16,11 +16,14 @@ services:
     container_name: data
     environment:
       - .env
+    ports:
+      - "3306:3306"
 
     volumes:
       - data1:/var/lib/data1
 
 volumes:
   data1: {}
+
 
 

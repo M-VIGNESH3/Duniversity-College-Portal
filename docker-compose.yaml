@@ -3,7 +3,7 @@ version: '3.8'
 services:
   collage-portal:
     build: public/college-portal/Dockerfile
-    container_name: c
+    container_name: c-p
     ports:
       - "81:3000"
     environment:
@@ -24,6 +24,7 @@ services:
 
 volumes:
   data1: {}
+
 
 
 

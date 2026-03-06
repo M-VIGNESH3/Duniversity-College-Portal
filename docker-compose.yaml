@@ -6,16 +6,16 @@ services:
     container_name: c-p
     ports:
       - "81:3000"
-    environment:
-      - .env 
+    env_file:
+      - ./.env 
     depends_on:
       - data-base
     
   data-base:
     image: mysql:8.0
     container_name: data
-    environment:
-      - .env
+    env:
+      - ./.env
     ports:
       - "3306:3306"
 
@@ -24,6 +24,7 @@ services:
 
 volumes:
   data1: {}
+
 
 
 

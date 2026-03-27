@@ -4,5 +4,47 @@ metadata:
   name: col
 spec:
   replicas: 3
-  stratage:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavaible: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: col
+  template:
+    metadata:
+      labels:
+        app: col
+    spec:
+      containers:
+        - name: col-cont
+          image: ashutosh4782/duniversity-college-portal-backend:latest
+          ports:
+            containerPort: 3000
+          envFrom:
+            - configMapRef:
+              name: col-cfg
+          resources:
+            requests:
+              cpu: 100m
+              memory: 25Mi
+            limits:
+              cpu: 200m
+              memory: 512Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: col-ser
+spec:
+  selector:
+    app: col-ser
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: ClusterIP
+      
+    
     

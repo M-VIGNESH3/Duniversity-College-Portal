@@ -33,7 +33,7 @@ spec:
       volumes:
         - name: cv
           persistentVolumeClaim:
-            claimName: fit-pvc
+            claimName: cv-claim
 ---
 apiVersion: v1
 kind: Service

@@ -28,9 +28,7 @@ spec:
         envFrom:
         - configMapRef:
             name: col-cfg
-        - secretRef:
-            name: col-secret
-
+        
         resources:
           requests:
             memory: "128Mi"

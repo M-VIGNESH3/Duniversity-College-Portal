@@ -31,7 +31,7 @@ spec:
             - name: cv
               mountPath: /var/lib/mysql
       volumes:
-        - name: cv
+        - name: col-pvc
           persistentVolumeClaim:
             claimName: col-pvc
 ---

@@ -4,8 +4,8 @@ metadata:
   name: mariadb-pvc
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
+  storageClassName: nfs-client
   resources:
     requests:
-      storage: 2Gi
-  storageClassName: nfs-client
+      storage: 5Gi

@@ -24,7 +24,7 @@ spec:
             - containerPort: 3000
           envFrom:
             - configMapRef:
-              name: col-cfg
+                name: col-cfg
           resources:
             requests:
               cpu: 100m

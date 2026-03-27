@@ -5,7 +5,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: nfs-client
+  storageClassName: nfs-client-mariadb
   resources:
     requests:
       storage: 5Gi

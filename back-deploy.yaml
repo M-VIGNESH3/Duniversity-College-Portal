@@ -21,21 +21,25 @@ spec:
         envFrom:
         - configMapRef:
             name: col-cfg
-      
 
         volumeMounts:
         - name: mariadb-storage
-          mountPath: /var/lib/mysql   
+          mountPath: /var/lib/mysql
+        - name: schema-volume
+          mountPath: /docker-entrypoint-initdb.d/  # ✅ MariaDB auto-init folder
 
       volumes:
       - name: mariadb-storage
         persistentVolumeClaim:
           claimName: mariadb-pvc
+      - name: schema-volume
+        configMap:
+          name: mariadb-schema
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mariadb   
+  name: mariadb
 spec:
   selector:
     app: mariadb

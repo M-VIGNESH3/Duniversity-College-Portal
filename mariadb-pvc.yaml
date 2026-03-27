@@ -3,9 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: mariadb-pvc
 spec:
+  storageClassName: nfs-client-mariadb
   accessModes:
     - ReadWriteOnce
-  storageClassName: nfs-client-mariadb
   resources:
     requests:
       storage: 5Gi

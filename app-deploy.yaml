@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: col
+metadata: 
+  name: college-deploy
 spec:
-  replicas: 3
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -11,40 +11,43 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: col
+      app: college
   template:
     metadata:
-      labels:
-        app: col
+      labels: 
+        app: college
     spec:
       containers:
-        - name: col-cont
-          image: ashutosh4782/duniversity-college-portal-backend:latest
-          ports:
-            - containerPort: 3000
-          envFrom:
-            - configMapRef:
-                name: col-cfg
-          resources:
-            requests:
-              cpu: 100m
-              memory: 25Mi
-            limits:
-              cpu: 200m
-              memory: 512Mi
+      - name: college-cont
+        image: ashutosh4782/duniversity-college-portal-backend:latest
+        
+        ports:
+        - containerPort: 3000
 
+        # 🔥 THIS IS THE MAIN CHANGE
+        envFrom:
+        - configMapRef:
+            name: col-cfg
+        - secretRef:
+            name: col-secret
+
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: col-ser
+metadata: 
+  name: college-svc
 spec:
-  selector:
-    app: col-ser
+  selector: 
+    app: college
   ports:
-  - port: 80
-    targetPort: 3000
+    - port: 3001
+      targetPort: 3000
+      protocol: TCP
   type: NodePort
-      
-    
-    

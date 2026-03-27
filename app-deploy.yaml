@@ -21,7 +21,7 @@ spec:
         - name: col-cont
           image: ashutosh4782/duniversity-college-portal-backend:latest
           ports:
-            containerPort: 3000
+            ContainerPort: 3000
           envFrom:
             - configMapRef:
               name: col-cfg

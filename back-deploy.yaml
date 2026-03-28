@@ -39,7 +39,7 @@ spec:
   - metadata:
       name: mariadb-storage
     spec:
-      storageClassName: nfs-client-mariadb
+      storageClassName: nfs-client
       accessModes:
         - ReadWriteMany    # Change to RWO if required
       resources:

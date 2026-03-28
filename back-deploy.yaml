@@ -1,9 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: mariadb-deploy
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: mariadb
@@ -12,6 +12,7 @@ spec:
       labels:
         app: mariadb
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
       - name: mariadb
         image: mariadb:10.5
@@ -26,15 +27,25 @@ spec:
         - name: mariadb-storage
           mountPath: /var/lib/mysql
         - name: schema-volume
-          mountPath: /docker-entrypoint-initdb.d/  # ✅ MariaDB auto-init folder
+          mountPath: /docker-entrypoint-initdb.d/  
 
-      volumes:
-      - name: mariadb-storage
-        persistentVolumeClaim:
-          claimName: mariadb-pvc
-      - name: schema-volume
-        configMap:
-          name: mariadb-schema
+      volumeClaimTemplates:
+        metadata:
+          name: mariadb-storage 
+        spec:
+          storageClassName: nfs-client-mariadb
+          accessModes:
+            - ReadWriteMany
+          resources:
+            requests:
+              storage: 2Gi
+      # volumes:
+      # - name: mariadb-storage
+      #   persistentVolumeClaim:
+      #     claimName: mariadb-pvc
+      # - name: schema-volume
+      #   configMap:
+      #     name: mariadb-schema
 ---
 apiVersion: v1
 kind: Service
@@ -46,4 +57,4 @@ spec:
   ports:
     - port: 3306
       targetPort: 3306
-  type: ClusterIP
+  ClusterIP: None

@@ -4,5 +4,5 @@ metadata:
   name: nfs-client
 provisioner:  cluster.local/nfs-subdir-external-provisioner
 parameters:
-  pathPattern: /var/nfs/general
+  pathPattern: "${.PVC.namespace}/${.PVC.name}"
   onDelete: retain

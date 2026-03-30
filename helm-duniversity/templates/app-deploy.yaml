@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: {{ .Values.app.name }}
+  name: {{ .Values.deployments.app.name }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.deployments.replicaCount }}
   
   strategy:
     type: RollingUpdate
@@ -20,9 +20,9 @@ spec:
     spec:
       containers:
       - name: college-cont
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image: {{ .Values.deployments.image.repository }}:{{ .Values.deployments.image.tag }}
         ports: 
-          - containerPort: {{ .Values.ports.containerPort }}
+          - containerPort: {{ .Values.deployments.ports.containerPort }}
         envFrom:
         - configMapRef:
             name: col-cfg

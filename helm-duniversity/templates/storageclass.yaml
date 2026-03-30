@@ -1,8 +1,8 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: {{.Values.storageClass.name }}
-provisioner:  {{.Values.storageClass.provisioner }}
+  name: {{ .Values.storageClass.name }}
+provisioner:  {{ .Values.storageClass.provisioner }}
 parameters:
   pathPattern: "${.PVC.namespace}/${.PVC.name}"
-reclaimPolicy: {{.Values.storageClass.reclaimPolicy }}
+reclaimPolicy: {{ .Values.storageClass.reclaimPolicy }}

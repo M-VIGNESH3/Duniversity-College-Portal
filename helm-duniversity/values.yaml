@@ -25,7 +25,7 @@ statefulsets:
       containerPort: 3306
 
 storageClass:
-  - name: nfs-client
-    provisioner: cluster.local/nfs-subdir-external-provisioner
-    reclaimPolicy: Retain
+  name: nfs-client
+  provisioner: cluster.local/nfs-subdir-external-provisioner
+  reclaimPolicy: Retain
 

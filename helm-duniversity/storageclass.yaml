@@ -1,0 +1,8 @@
+apiVersion: Storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-client-mariadb
+provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
+parameters:
+  pathPattern: /var/nfs/general
+  onDelete: retain

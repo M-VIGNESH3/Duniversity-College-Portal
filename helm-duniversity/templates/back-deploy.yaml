@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mariadb-deploy
+  name: {{ .Values.app.name }}
 spec:
   serviceName: mariadb
   replicas: 1
@@ -16,9 +16,9 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mariadb
-        image: mariadb:10.5
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         ports:
-        - containerPort: 3306
+        - containerPort: {{ .Values.ports.containerPort }}
 
         envFrom:
         - configMapRef:

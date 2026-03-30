@@ -1,11 +1,31 @@
-app: 
-  name: college-deploy
+deployments:
+  - app: 
+      name: college-deploy
 
-replicaCount: 1
+    replicaCount: 1
 
-image: 
-  repository: ashutosh4782/duniversity-college-portal-backend
-  tag: latest
+    image: 
+      repository: ashutosh4782/duniversity-college-portal-backend
+      tag: latest
 
-ports:
-  containerPort: 3000
+    ports:
+      containerPort: 3000
+
+statefulsets:
+  - app: 
+      name: mariadb-deploy
+
+    replicaCount: 1
+
+    image: 
+      repository: mariadb
+      tag: 10.5
+
+    ports:
+      containerPort: 3306
+
+storageClass:
+  - name: nfs-client
+    provisioner: cluster.local/nfs-subdir-external-provisioner
+    reclaimPolicy: Retain
+
